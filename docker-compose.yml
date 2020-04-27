@@ -1,0 +1,23 @@
+version: '3'
+services:
+  hk-mysql:
+    container_name: hk-mysql
+    image: mysql
+    environment:
+      MYSQL_DATABASE: hospital
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+    ports:
+    - 3306:3306
+    restart: always
+  app:
+    build: ./
+    working_dir: /app
+    volumes:
+    - ./:/app
+    - ~/.m2:/root/.m2
+    ports:
+    - "4000:4000"
+    command: mvn clean spring-boot:run
+    depends_on:
+    - hk-mysql
