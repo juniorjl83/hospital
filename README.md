@@ -7,3 +7,5 @@ docker-compose up
 navigate to http://localhost:4000/swagger-ui.html to see de Patient API
 # Patient Post call
 App runs in port 4000 http://hospital-app-ip:4000/api/v1/patient/
+# Deployment Diagram
+See UML Deployment Diagram - Higher Level UML Deployment Diagram.pdf
