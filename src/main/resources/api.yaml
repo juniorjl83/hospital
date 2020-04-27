@@ -1,0 +1,120 @@
+swagger: '2.0'
+info:
+  description: |
+    This is hospital API Doc
+  version: 1.0.0
+  title: Swagger Hospital
+# host: petstore.swagger.io
+# basePath: /v2
+tags:
+- name: patient
+  description: Patient API
+# schemes:
+# - http
+paths:
+  /patient:
+    post:
+      tags:
+      - patient
+      summary: Register a new patient
+      operationId: addPatient
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Patient object that needs to be registered to the hospital
+        required: true
+        schema:
+          $ref: '#/definitions/Patient'
+      responses:
+        '201':
+          description: |
+            Patient registered successfully
+        '400':
+          description: |
+            The request has an invalid format or validation failure.
+          schema:
+            $ref: '#/definitions/FailureDetail'
+        '500':
+          description: Server error.
+          schema:
+            $ref: '#/definitions/FailureDetail'
+definitions:
+  Patient:
+    type: object
+    required:
+    - id
+    - photoUrls
+    properties:
+      id:
+        type: string
+        example: "88277345"
+      firstname:
+        type: string
+        example: "Larry"
+      lastname:
+        type: string
+        example: "Hopps"
+      email:
+        type: string
+        example: "larry.hopps@gmail.com"
+      phone:
+        type: string
+        example: "+573206648742"
+  FailureDetail:
+      type: object
+      description: |
+        Details why REST Service invocation ends with a HTTP error status.
+      properties:
+        timestamp:
+          type:   integer
+          format: int64
+          description: |
+            Timestamp that indicates when the object was created.
+          example: 
+        status:
+          type:   integer
+          format: int32
+          description: |
+            HTTP Status code.
+        exception:
+          type: string
+          description: |
+            Fully Qualified Exception Name.
+        code:
+          type: string
+          description: |
+            Module Exception Code (Example, SSP-0000).
+        severity:
+          type: string
+          enum:
+            - WARN
+            - ERROR
+            - FATAL
+          description: |
+            Severity level associated to the given exception.
+        message:
+          type: string
+          description: |
+            Exception's message.
+        params:
+          type:  array
+          items:
+            type: string
+          description: |
+            Parameters that were used to customize the
+            exception's message. Clients may use these to create
+            new Exception's messages.
+        path:
+          type: string
+          description: |
+            URI that identifies the REST Resource that was invoked.
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /jose.munoz.sierra/Hospital/1.0.0
+schemes:
+ - https
+ - http
