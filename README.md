@@ -1,5 +1,5 @@
 # hospital
-Hospital app
+Hospital app de damier
 # run
 docker-compose up
 <br>This run creates two container one for mysql database another for java app
